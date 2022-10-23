@@ -20,40 +20,19 @@ namespace IdentityServer
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
-                // machine to machine client (from quickstart 1)
                 new Client
                 {
-                    ClientId = "client",
+                    ClientId = "mobile_pswd",
                     ClientSecrets = { new Secret("secret".Sha256()) },
-
-                    AllowedGrantTypes = GrantTypes.Code,
-                    AllowedScopes = { "openid", "api1" }
-                },
-                new Client
-                {
-                    ClientId = "mobile",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = { "https://host.docker.internal:6001/callback" },
-                    AllowedScopes = new List<string>
-                    {
-                        "openid",
-                        "api1"
-                    },
-                    RequirePkce = false
-                },
-                new Client
-                {
-                    ClientId = "device",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
-                    AllowedGrantTypes = GrantTypes.DeviceFlow,
-                    RedirectUris = { "https://host.docker.internal:6001/callback" },
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    //RedirectUris = { "https://host.docker.internal:6001/callback" },
                     AllowedScopes = new List<string>
                     {
                         "openid",
                         "api1"
                     }
-                }
+                },
+
             };
     }
 }
