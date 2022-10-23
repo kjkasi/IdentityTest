@@ -7,7 +7,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://host.docker.internal:5000;https://host.docker.internal:5001"
+      "applicationUrl": "https://host.docker.internal:5001;http://host.docker.internal:5000"
     }
   }
 }

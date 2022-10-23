@@ -34,19 +34,20 @@ namespace IdentityServer
                     ClientId = "mobile",
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = { "https://host.docker.internal:5001/signin-oidc" },
+                    RedirectUris = { "https://host.docker.internal:6001/callback" },
                     AllowedScopes = new List<string>
                     {
                         "openid",
                         "api1"
-                    }
+                    },
+                    RequirePkce = false
                 },
                 new Client
                 {
                     ClientId = "device",
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.DeviceFlow,
-                    RedirectUris = { "http://localhost:5000/signin-oidc" },
+                    RedirectUris = { "https://host.docker.internal:6001/callback" },
                     AllowedScopes = new List<string>
                     {
                         "openid",
