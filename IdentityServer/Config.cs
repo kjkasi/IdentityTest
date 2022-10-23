@@ -1,4 +1,5 @@
 ﻿using Duende.IdentityServer.Models;
+using static System.Net.WebRequestMethods;
 
 namespace IdentityServer
 {
@@ -23,7 +24,7 @@ namespace IdentityServer
                 new Client
                 {
                     ClientId = "client",
-                    ClientSecrets = { new Secret("secret") },
+                    ClientSecrets = { new Secret("secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowedScopes = { "openid", "api1" }
@@ -31,9 +32,21 @@ namespace IdentityServer
                 new Client
                 {
                     ClientId = "mobile",
-                    ClientSecrets = { new Secret("secret") },
+                    ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.Code,
-
+                    RedirectUris = { "https://host.docker.internal:5001/signin-oidc" },
+                    AllowedScopes = new List<string>
+                    {
+                        "openid",
+                        "api1"
+                    }
+                },
+                new Client
+                {
+                    ClientId = "device",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.DeviceFlow,
+                    RedirectUris = { "http://localhost:5000/signin-oidc" },
                     AllowedScopes = new List<string>
                     {
                         "openid",
