@@ -25,7 +25,6 @@ namespace IdentityServer
                     ClientId = "mobile_pswd",
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    //RedirectUris = { "https://host.docker.internal:6001/callback" },
                     AllowedScopes = new List<string>
                     {
                         "openid",
