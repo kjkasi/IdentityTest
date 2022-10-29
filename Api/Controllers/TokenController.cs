@@ -17,7 +17,7 @@ namespace Api.Controllers
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, disco.Error);
             }
 
             // request token
