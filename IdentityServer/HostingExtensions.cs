@@ -26,8 +26,10 @@ namespace IdentityServer
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             // uncomment if you want to add a UI
             //app.UseStaticFiles();
             //app.UseRouting();

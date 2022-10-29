@@ -12,7 +12,7 @@ namespace Api.Controllers
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync("https://localhost:5001");
+            var disco = await client.GetDiscoveryDocumentAsync("https://host.docker.internal:5001");
 
             if (disco.IsError)
             {
