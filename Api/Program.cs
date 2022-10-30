@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,9 +41,12 @@ builder.Services.AddSwaggerGen(opt =>
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt => {
-        opt.Authority = "https://host.docker.internal:5001";
-        opt.TokenValidationParameters.ValidateAudience = false;
-        opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+        opt.Authority = "http://host.docker.internal:5000";
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false
+        };
+        opt.RequireHttpsMetadata = false;
     });
 
 builder.Services.AddAuthorization(opt =>

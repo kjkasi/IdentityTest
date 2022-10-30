@@ -1,11 +1,19 @@
 version: '3.4'
 
 services:
-  identityserver:
+  
+  sqldata:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5434:1433"
+
+  identity:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=<password>
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=1123
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/host.docker.internal.pfx
     ports:
       - "5000:80"
@@ -13,11 +21,12 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${USERPROFILE}/.aspnet/https:/https:ro
+
   api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=<password>
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=1123
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/host.docker.internal.pfx
     ports:
       - "6000:80"

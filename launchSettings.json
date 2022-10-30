@@ -8,7 +8,8 @@
       "composeLaunchUrl": "{Scheme}://host.docker.internal:{ServicePort}/swagger",
       "serviceActions": {
         "api": "StartDebugging",
-        "identityserver": "StartDebugging"
+        "identity": "StartDebugging",
+        "sqldata": "StartWithoutDebugging"
       }
     }
   }
