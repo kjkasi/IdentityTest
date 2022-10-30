@@ -40,7 +40,7 @@ builder.Services.AddSwaggerGen(opt =>
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt => {
-        opt.Authority = "https://localhost:5001";
+        opt.Authority = "https://host.docker.internal:5001";
         opt.TokenValidationParameters.ValidateAudience = false;
         opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
     });
