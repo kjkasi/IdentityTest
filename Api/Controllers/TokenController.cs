@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.WebRequestMethods;
 
 namespace Api.Controllers
 {
@@ -12,7 +13,15 @@ namespace Api.Controllers
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync("https://host.docker.internal:5001");
+            //var disco = await client.GetDiscoveryDocumentAsync("https://host.docker.internal:5001");
+            var disco = await client.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+            {
+                Address = "http://host.docker.internal:5000",
+                Policy =
+                {
+                    RequireHttps = false
+                }
+            });
 
             if (disco.IsError)
             {
